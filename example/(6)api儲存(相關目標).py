@@ -3,7 +3,8 @@ import json
 import csv
 import sqlite3#連結資料庫
 import math #計算頁數
-#import pymysql
+import os
+import pymysql
 
 mykeY = "80696437"
 urlOMDB = "http://www.omdbapi.com/?s="
@@ -32,7 +33,7 @@ def _store_by_json(i,j):#i:網址--j:電影名
         for k in i:
             dictFile = json.loads(requests.get(k).text)
             json.dump(dictFile,filE,ensure_ascii=False,indent=4)  
-        return print("已將",j,'以json的方式儲存')
+        return print("已將",j,'以json的方式儲存於',os.getcwd())
 
 def _store_by_csv(i,j):#i:網址--j:電影名
     csv_filE= open(j+'相關(s)'+'.csv','w',newline="",encoding="utf-8-sig")
@@ -43,7 +44,7 @@ def _store_by_csv(i,j):#i:網址--j:電影名
         for m in dictFile["Search"]:
             writeR.writerow((m['Title'],m["Year"],m["Poster"]))
     csv_filE.close()
-    return print("已將",j,'以csv的方式儲存')
+    return print("已將",j,'以csv的方式儲存於',os.getcwd())
 
 def _store_by_DBBrowser(i,j):#i:網址--j:電影名
     db = sqlite3.connect(j+'.db')
@@ -54,7 +55,7 @@ def _store_by_DBBrowser(i,j):#i:網址--j:電影名
             roW =[m['Title'],m["Year"],m["Poster"]]
             db.execute("INSERT INTO movie_1 (name,time,Poster)VALUES(?,?,?)",roW)
     db.commit()
-    return print("已將",j,'以DB Browser的方式儲存')
+    return print("已將",j,'以DB Browser的方式儲存於',os.getcwd())
 
 
 def _store_by_Mysql(i, j):#i:網址--j:電影名
@@ -110,10 +111,9 @@ moviE = input("請輸入英文電影名稱")
 '''以csv的方式儲存'''#i:網址--j:電影名
 #_store_by_csv(_search(moviE,_Page(moviE)),moviE )
 '''以DB Browser的方式儲存'''#i:網址--j:電影名
-_store_by_DBBrowser(_search(moviE,_Page(moviE)),moviE)  
+#_store_by_DBBrowser(_search(moviE,_Page(moviE)),moviE)  
 '''以Mysql的方式儲存''' #i:網址--j:電影名   
 #_store_by_Mysql(_search(moviE),moviE ) 
-#問題
-#如何知道自己的檔案哪裡(指令碼)
+
 
 

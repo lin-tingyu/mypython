@@ -3,6 +3,7 @@ import json
 import csv
 import sqlite3#連結資料庫
 import pymysql
+import os
 
 def _search(i):
     mykeY = "80696437"
@@ -15,7 +16,7 @@ def _store_by_json(i,j):
     dictFile = json.loads(requests.get(i).text)
     with open (j+"(t).json","w",encoding = "utf-8")as filE:
         json.dump(dictFile,filE,ensure_ascii=False,indent=4)
-        return print("已將",j,'以json的方式儲存')
+        return print("已將",j,'以json的方式儲存於',os.getcwd())
 
 def _store_by_csv(i,j):
     dictFile = json.loads(requests.get(i).text)
@@ -24,7 +25,7 @@ def _store_by_csv(i,j):
     writeR.writerow(["電影名稱","上映日","票房"])
     writeR.writerow((dictFile['Title'],dictFile['Released'],dictFile['BoxOffice']))
     csv_filE.close()
-    return print("已將",j,'以csv的方式儲存')
+    return print("已將",j,'以csv的方式儲存於',os.getcwd())
 
 def _store_by_DBBrowser(i,j):
     dictFile = json.loads(requests.get(i).text)
@@ -33,7 +34,7 @@ def _store_by_DBBrowser(i,j):
     db.execute("CREATE TABLE movie(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,time TEXT,BoxOffice TEXT)")
     db.execute("INSERT INTO movie (name,time,BoxOffice)VALUES(?,?,?)",roW)
     db.commit()
-    return print("已將",j,'以DB Browser的方式儲存')
+    return print("已將",j,'以DB Browser的方式儲存於',os.getcwd())
 
 
 def _store_by_Mysql(i, j):
@@ -88,4 +89,4 @@ moviE = input("請輸入英文電影名稱")
 '''以DB Browser的方式儲存'''
 #_store_by_DBBrowser(_search(moviE),moviE )  
 '''以Mysql的方式儲存'''     
-_store_by_Mysql(_search(moviE),moviE ) 
+#_store_by_Mysql(_search(moviE),moviE ) 
