@@ -21,7 +21,7 @@ def now_csv():
        print('資料儲存成功，並以'+'  '+'now_'+nu+'.csv'+'  '+'的形式存於'+os.getcwd())
     else:
         print('資料取得失敗')
-
+    csvfilE.close()
 
 def _month_csv():
     nu = input('代號')
