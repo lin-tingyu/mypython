@@ -50,13 +50,10 @@ def _month_csv():
     print('資料儲存成功，並以'+'  '+nu+'+'+y+m+'.csv'+'  '+'的形式存於'+os.getcwd())
     csvfilE.close()
      
- 
-
-
 
 
 #now_csv()
-#_month_csv()
+_month_csv()
 
 
 
