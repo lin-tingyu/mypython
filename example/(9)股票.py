@@ -4,7 +4,7 @@ import twstock#抓取台灣股票資料
 import csv
 import os
 
-def now_csv():
+def _now_csv():
     nu = input('代號')
     datA_1 = twstock.realtime.get(nu) 
     if datA_1['success']:
@@ -50,13 +50,22 @@ def _month_csv():
     print('資料儲存成功，並以'+'  '+nu+'+'+y+m+'.csv'+'  '+'的形式存於'+os.getcwd())
     csvfilE.close()
      
+def _now_print():
+    nu = input('代號')
+    datA_1 = twstock.realtime.get(nu) 
+    if datA_1['success']:
+        print(datA_1["realtime"]["best_bid_price"][0])
+        print(datA_1["realtime"]["best_ask_price"][0])
+    else:
+        print('資料取得失敗')
 
 
 #now_csv()
-_month_csv()
+#_month_csv()
+#_now_print()
 
-
-
+datA_1 = twstock.realtime.get('00632R')
+print(datA_1['success'])
 
 
 

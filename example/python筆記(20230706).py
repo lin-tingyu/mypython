@@ -340,7 +340,9 @@ ts3.plot()
 loc = 'C:\\Users\\Lin ting yu\\Desktop'
 filename = '123.xls'
 #Panel Data---excell
+#https://vimsky.com/zh-tw/examples/usage/python-pandas.ExcelWriter.html
 path= r'C:/Users/Lin ting yu/Desktop/論文/數據'
+dictFile = pd.read_excel(path+'.xlsx',engine='openpyxl',dtype={'股票代號':str})#指定讀取格式為str
 df = pd.read_excel(path+'/月資料.xls',skiprows=[0,2,242])#xls 
 df2 = pd.read_csv(path+'/金鐘獎 101_106.csv', header =None, names=('ABCD'))
     #sheet_name=0 第一個col不是名子
