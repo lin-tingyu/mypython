@@ -4,7 +4,7 @@ import twstock
 from datetime import datetime#時間
 import numpy as np# np.arange
 import time
-patH_1 = r'C:\my_github\mypytjon\example\獲利追蹤'
+patH_1 = r'C:\mypython\example\獲利追蹤'
 patH_3 = '目標'
 
 def _indvidual(nu):
@@ -61,7 +61,8 @@ def _price_now():
                     df_0.to_excel(writer, sheet_name=Sheet)#不存在時會自動生成
                     df_1.to_excel(writer, sheet_name=Sheet,index=True, header=True)
                     writer.save()
+                    print('xlsx資料檔案已經建立，請在執行檔案一次')
         writer.close()
-        time.sleep(5)
+        time.sleep(60)
   
 _price_now()
