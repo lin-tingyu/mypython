@@ -90,8 +90,12 @@ print(a[0:6:3],a[:3],a[4:],a[-1],sep="~~")#呼叫
 b=[7]
 del a[0]#減少一個新的元素
 a+=b#增加一個新的元素
-print("加總=%2.1f\n最大%2d\n最小%2d"%(sum(a),max(a),min(a)))
-list_0 =(1,2)
+#基本元素---print & input
+print("加總=%2.1f\n最大%2d\n最小%2d"%(sum(a),max(a),min(a)))#舊式表示法
+print('{0:5.3f},{0:^10d},{2:.2%}'.format(5,10,15))#新式表示法
+year = input('輸入您的年齡')#以字串儲存
+year = eval(input('輸入您的年齡'))#自動分別int或float，以數字形式儲存
+list_0 = (1, 2)
 list_1 = [1,2,3,'a']
 list_1.append(list_0)#可以增加list&tuple
 print(list_0 in list_1)
