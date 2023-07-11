@@ -3,6 +3,8 @@ import twstock#抓取台灣股票資料
 #twstock.__update_codes()(代碼跟新)
 import csv
 import os
+import matplotlib.pyplot as pY
+import pandas
 
 def _now_csv():
     nu = input('代號')
@@ -49,6 +51,32 @@ def _month_csv():
         writE.writerow([dd,c,'close'])
     print('資料儲存成功，並以'+'  '+nu+'+'+y+m+'.csv'+'  '+'的形式存於'+os.getcwd())
     csvfilE.close()
+    return(nu+'+'+y+m+'.csv')
+
+def _month_csv_1():
+    nu = input('代號')
+    stock = twstock.Stock(nu)
+    y = input('年')
+    m = input('月')
+    datA = stock.fetch(int(y),int(m))
+    
+    csvfilE = open(nu+'+'+y+m+'.csv','w',newline="",encoding="utf-8-sig") 
+    writE = csv.writer(csvfilE)
+    writE.writerow(['date','open','high','low','close'])
+
+    for i in range(len(datA)): 
+        d = str(datA[i][0])
+        dd = d.split(' ')[0]
+        
+        o = str(datA[i][3])
+        h = str(datA[i][4])
+        l = str(datA[i][5])
+        c = str(datA[i][6])
+        writE.writerow([dd,o,h,l,c])
+    print('資料儲存成功，並以'+'  '+nu+'+'+y+m+'.csv'+'  '+'的形式存於'+os.getcwd())
+    csvfilE.close()
+    return(nu+'+'+y+m+'.csv')
+
      
 def _now_print():
     nu = input('代號')
@@ -59,14 +87,17 @@ def _now_print():
     else:
         print('資料取得失敗')
 
+'''
+Matplotlib--[boxplot]--箱型圖示範程式
+'''
+
 
 #now_csv()
 #_month_csv()
 #_now_print()
 
-datA_1 = twstock.realtime.get('00632R')
-print(datA_1['success'])
-
+# datA_1 = twstock.realtime.get('00632R')
+# print(datA_1['success'])
 
 
 

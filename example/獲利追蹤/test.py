@@ -45,7 +45,6 @@ def _price_now():
                 try:#如果有xlsx檔，也有Sheet
                     book = openpyxl.load_workbook(patH_1 + '\\' + patH_2 + '.xlsx')
                     writer = pd.ExcelWriter(patH_1 + '\\' + patH_2 + '.xlsx', engine='openpyxl',mode="a", if_sheet_exists="overlay")
-                    writer.book = book
                     sheet1 = writer.book[Sheet]
                     start_row = sheet1.max_row 
                     df_1.to_excel(writer, sheet_name=Sheet,startrow=start_row,index=True, header=False)
@@ -61,7 +60,8 @@ def _price_now():
                     df_1.to_excel(writer, sheet_name=Sheet,index=True, header=True)
                     writer.save()
                     print('xlsx資料檔案已經建立，請在執行檔案一次')
-        writer.close()
-        time.sleep(60)
+        writer.close()  
+        time.sleep(10)
   
 _price_now()
+

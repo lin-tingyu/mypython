@@ -6,7 +6,6 @@ from datetime import datetime#時間
 from datetime import timedelta#時間(幾天候)
 import pandas as pd #匯入excell
 import random # random
-import matplotlib.pyplot as plt#畫圖
 pd.core.common.is_list_like = pd.api.types.is_list_like#網路抓資料
 from pandas_datareader import data, wb#網路抓資料
 import pandas_datareader.data as web#網路抓資料
@@ -14,7 +13,9 @@ from pytrends.request import TrendReq#下載 google trend
 import pandas_datareader as pdr#從API抓資料(例:tiingo)
 #其他API資料: https://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 from scipy.stats import norm#統計 pdf
-import seaborn as sns;
+import matplotlib.pyplot as plt#畫圖(1)
+from pylab import mpl#可以讓matplotlib.pyplot顯示中文
+import seaborn as sns;#畫圖(2)
 #scatterplot輔助繪製圖表的工具，還是需要matplotlib.pyplot才能運行
 #詳細可去官網https://seaborn.pydata.org/examples/index.html查看
 #須安裝(pip install seeborn)
@@ -38,6 +39,19 @@ import json#json爬蟲，將檔案存成json檔
 import twstock#抓取台灣股票資料
 #(pip install twstock-->import twstock-->twstock.__update_codes())
 #twstock.__update_codes()(代碼跟新)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -91,10 +105,7 @@ b=[7]
 del a[0]#減少一個新的元素
 a+=b#增加一個新的元素
 #基本元素---print & input
-print("加總=%2.1f\n最大%2d\n最小%2d"%(sum(a),max(a),min(a)))#舊式表示法
-print('{0:5.3f},{0:^10d},{2:.2%}'.format(5,10,15))#新式表示法
-year = input('輸入您的年齡')#以字串儲存
-year = eval(input('輸入您的年齡'))#自動分別int或float，以數字形式儲存
+
 list_0 = (1, 2)
 list_1 = [1,2,3,'a']
 list_1.append(list_0)#可以增加list&tuple
@@ -131,10 +142,14 @@ data_3 = np.row_stack((data_00,data_11))#直向合併
 score = 90
 name = 'ray'
 count = 1
-print("%s你第%2d次成績是%2.1f分"%(name,count,score))
-print("%-10s你第%-10d次成績是%-10.1f分"%(name,count,score))
+a=[2,3,4,5]
+print("加總=%2.1f\n最大%2d\n最小%2d"%(sum(a),max(a),min(a)))#舊式表示法
+print("%-10s你第%-10d次成績是%-10.1f分"%(name,count,score))#舊式表示法
 print('姓名：'+'\n'+chr(26519)+chr(24237)+chr(23431))
-print(r'\n')
+print('{0:5.3f},{0:^10d},{2:.2%}'.format(5,10,15))#新式表示法
+year = input('輸入您的年齡')#以字串儲存
+year = eval(input('輸入您的年齡'))#自動分別int或float，以數字形式儲存
+print(r'\n')#跳脫字元
 print(ord("宇"))
 print('123',end='')#不換行
 #Tuples()和list[]共用
@@ -373,7 +388,9 @@ dff['A_mean'] = dff['A'].fillna(dff['A'].mean())
 dff[['A_f','A_mean','A_1']].plot() 
     # DataFrame 後面可以直接以 plot() 作為畫圖的最基本用法
 #Panel Data---missing values(進階)WEEK4
-
+from pylab import mpl
+mpl.rcParams["font.sans-serif"] = ["Microsoft YaHei"] #(from pylab import mpl) 
+mpl.rcParams["axes.unicode_minus"] = False#(from pylab import mpl) 
 #創圖紙(方法一)(圖紙子圖創完再丟資料)
 fig = plt.figure()
 ax1 = fig.add_subplot(2,2,1)
